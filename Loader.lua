@@ -537,7 +537,7 @@ function WebhookManager()
                     Headers = { ['Content-Type'] = 'application/json' },
                     Body = game:GetService('HttpService'):JSONEncode({
                         username = 'lyxme Hub | Fisch🐟',
-                        avatar_url = 'Discordapp.com/users/1193219231588819115',
+                        avatar_url = 'https://cdn.discordapp.com/attachments/1201562911282303067/1304164519311839253/oUNcDYXgZdxxMPk8AANBADTobyc3iPPEBA7iItplv-tej9nj120t-origin.webp?ex=672fb6db&is=672e655b&hm=9fbd3abbcfc76f2fda6d4fca2f55338ddf6c17361778546157dbb19cb4017d60&',
                         embeds = { Embed }
                     }),
                 }

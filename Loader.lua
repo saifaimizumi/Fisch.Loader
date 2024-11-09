@@ -968,7 +968,7 @@ do
     Slider512:SetValue(90)
 
     Tabs.Misc:AddButton({
-        Title = "Button to enable fps cap value",
+        Title = "Setfps cap",
         Description = "🐟",
         Callback = function()
             setfpscap(FpsCap)
@@ -1052,8 +1052,8 @@ do
     })
 
     Tabs.Fun:AddButton({
-        Title = "Radio UI",
-        Description = "Chill😎",
+        Title = "Turn Music",
+        Description = "Chill",
         Callback = function()
             loadstring(game:HttpGet('https://pastebin.com/raw/zv94NGMc'))()
         end

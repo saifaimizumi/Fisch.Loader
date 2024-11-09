@@ -183,10 +183,9 @@ local PlayerGUI = LocalPlayer:FindFirstChildOfClass("PlayerGui")
 local AutoFreeze = false
 local autoShake = false
 local AutoFish = false
-local autoShake2 = false
-local autoShake3 = false
+local autoShake = false
 local AutoZoneCast = false
-local autoShakeDelay = 0.3
+local autoShakeDelay = 0
 local autoReel = false
 local AutoCast = false
 local Noclip = false
@@ -214,60 +213,59 @@ PlayerGUI.ChildAdded:Connect(function(GUI)
     end
 end)
 function AutoFish5()
-    if autoShake3 then
-        task.spawn(function()
-            while AutoFish do
-                local PlayerGUI = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
-                local shakeUI = PlayerGUI:FindFirstChild("shakeui")
-                if shakeUI and shakeUI.Enabled then
-                    local safezone = shakeUI:FindFirstChild("safezone")
-                    if safezone then
-                        local button = safezone:FindFirstChild("button")
-                        if button and button:IsA("ImageButton") and button.Visible then
-                            if autoShake then
-                                local pos = button.AbsolutePosition
-                                local size = button.AbsoluteSize
-                                VirtualInputManager:SendMouseButtonEvent(pos.X + size.X / 2, pos.Y + size.Y / 2, 0, true, game:GetService("Players").LocalPlayer, 0)
-                                VirtualInputManager:SendMouseButtonEvent(pos.X + size.X / 2, pos.Y + size.Y / 2, 0, false, game:GetService("Players").LocalPlayer, 0)
-                            elseif autoShake2 then
-                                GuiService.SelectedObject = button
-                                VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.Return, false, game)
-                                VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.Return, false, game)
-                            end
-                        end
-                    end
-                end
-                task.wait()
-            end
-        end)
-    else
-        task.spawn(function()
-            while AutoFish do
-                task.wait(autoShakeDelay)
-                local PlayerGUI = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
-                local shakeUI = PlayerGUI:FindFirstChild("shakeui")
-                if shakeUI and shakeUI.Enabled then
-                    local safezone = shakeUI:FindFirstChild("safezone")
-                    if safezone then
-                        local button = safezone:FindFirstChild("button")
-                        if button and button:IsA("ImageButton") and button.Visible then
-                            if autoShake then
-                                local pos = button.AbsolutePosition
-                                local size = button.AbsoluteSize
-                                VirtualInputManager:SendMouseButtonEvent(pos.X + size.X / 2, pos.Y + size.Y / 2, 0, true, game:GetService("Players").LocalPlayer, 0)
-                                VirtualInputManager:SendMouseButtonEvent(pos.X + size.X / 2, pos.Y + size.Y / 2, 0, false, game:GetService("Players").LocalPlayer, 0)
-                            elseif autoShake2 then
-                                GuiService.SelectedObject = button
-                                VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.Return, false, game)
-                                VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.Return, false, game)
-                            end
-                        end
-                    end
-                end
-            end
-        end)
-    end
+    if autoShake then
+        local function handleButtonClick(button)
+    if not button.Visible then return end
+    
+    GuiService.SelectedObject = button
+    task.wait(autoShakeDelay)
+    
+    VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.Return, false, game)
+    VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.Return, false, game)
 end
+
+-- Main Tab Elements
+local autoShakeToggle = Tabs.Main:AddToggle("AutoShake", {
+    Title = "Auto Shake",
+    Default = false,
+    Callback = function(Value)
+        autoShake = Value
+        
+        if Value then
+            PlayerGUI.ChildAdded:Connect(function(GUI)
+                if GUI:IsA("ScreenGui") and GUI.Name == "shakeui" then
+                    local safezone = GUI:WaitForChild("safezone", 5)
+                    if safezone then
+                        safezone.ChildAdded:Connect(function(child)
+                            if child:IsA("ImageButton") and child.Name == "button" then
+                                task.spawn(function()
+                                    if autoShake then
+                                        handleButtonClick(child)
+                                    end
+                                end)
+                            end
+                        end)
+                    end
+                end
+            end)
+        end
+    end
+})
+
+--ist jetzt nicht die beste lösung aber ich bin dran
+task.spawn(function()
+    task.wait(0.1)
+
+    local value = true
+    autoShakeToggle.SetValue(value) -- Toggle it on
+    print("AutoShake set to " .. tostring(value))
+
+    task.wait(0.05)
+
+    value = false
+    autoShakeToggle.SetValue(value) -- Toggle it off
+    print("AutoShake set to " .. tostring(value))
+end)
 function ZoneCasting()
     if not ProtectPremium then
         return
@@ -407,17 +405,20 @@ function AntiAfk2()
     end)
 end           
 PlayerGUI.ChildAdded:Connect(function(GUI)
-    if GUI:IsA("ScreenGui") then
-    elseif GUI.Name == "reel" and autoReel then
-        local reelfinishedEvent = ReplicatedStorage:WaitForChild("events"):WaitForChild("reelfinished")
-        if reelfinishedEvent then
-            while GUI do
-                task.wait(2)
-                reelfinishedEvent:FireServer(100, false)
-            end
+                if GUI:IsA("ScreenGui") and GUI.Name == "reel" then
+                    if autoReel then
+                        local reelEvent = ReplicatedStorage:WaitForChild("events"):WaitForChild("reelfinished")
+                        if reelEvent then
+                            repeat
+                                task.wait(autoReelDelay)
+                                reelEvent:FireServer(100, false)
+                            until GUI == nil or not autoReel
+                        end
+                    end
+                end
+            end)
         end
-    end
-end)
+end
 function Pidoras()
     spawn(function()
         while AutoCast do

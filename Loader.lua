@@ -1,6 +1,7 @@
 
 -- lyxme Hub | Fisch
 
+
 local ProtectPremium = true
 
 --<>----<>----<>----< Getting Services >----<>----<>----<>--
@@ -32,6 +33,7 @@ GuiService = game:GetService("GuiService")
 print("ClientMonsterTools.lua loaded")
 
 
+
 --<>----<>----<>----< Anti Afk >----<>----<>----<>--
 game.Players.LocalPlayer.Idled:Connect(function()
     VirtualUser:CaptureController()
@@ -47,7 +49,7 @@ local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/d
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 
 local Window = Fluent:CreateWindow({
-    Title = "Fisch | lyxme Hub",
+    Title = "[🐟]Fisch | lyxme Hub",
     SubTitle = "",
     TabWidth = 150,
     Size = UDim2.fromOffset(600, 400),
@@ -58,7 +60,7 @@ local Window = Fluent:CreateWindow({
 
 -- Creating tabs
 local Tabs = {
-    Main = Window:AddTab({ Title = "Main", Icon = "code" }),
+    Main = Window:AddTab({ Title = "Main", Icon = "home" }),
     Teleports = Window:AddTab({ Title = "Teleports", Icon = "compass" }),
     Misc = Window:AddTab({ Title = "Misc", Icon = "file-text" }),
     Fun = Window:AddTab({ Title = "Fun", Icon = "coffee" }),
@@ -519,14 +521,14 @@ function WebhookManager()
 
             local Embed = {
                 title = 'lyxme Hub',
-                color = 0x8B26BB,
+                color = ffccff,
                 fields = {
                     { name = 'Player Profile', value = playerProfileUrl },
                     { name = '', value = '', },
                     { name = 'C$ - Money💸', value = '```' .. MoneyPlayer .. '```', inline = true },
                     { name = 'Fishing Level🎣', value = '```' .. LvlPlayer .. '```', inline = true },
                     { name = '', value = '', },
-                    { name = 'Current Local Time', value = formattedLocalTime },
+                    { name = 'Sent Webhook', value = formattedLocalTime },
                 },
                 timestamp = os.date('!%Y-%m-%dT%H:%M:%SZ', OSTime),
             }
@@ -1158,7 +1160,7 @@ do
         print("Delay changed:", Value)
     end)
 
-    local ToggleWebhook = Tabs.Webhook:AddToggle("ToggleWebhook", {Title = "Webhook On/Off", Default = false })
+    local ToggleWebhook = Tabs.Webhook:AddToggle("ToggleWebhook", {Title = "Sent Webhook", Default = false })
     ToggleWebhook:OnChanged(function()
         WebhookLog = ToggleWebhook.Value
         WebhookManager()
@@ -1172,8 +1174,8 @@ InterfaceManager:SetLibrary(Fluent)
 -- SaveManager:IgnoreThemeSettings()
 SaveManager:SetIgnoreIndexes({})
 
-InterfaceManager:SetFolder("SpaceHub")
-SaveManager:SetFolder("SpaceHub/Fisch")
+InterfaceManager:SetFolder("lyxmeHub")
+SaveManager:SetFolder("lyxmeHub/Fisch")
 
 InterfaceManager:BuildInterfaceSection(Tabs.Settings)
 SaveManager:BuildConfigSection(Tabs.Settings)
@@ -1182,13 +1184,13 @@ SaveManager:BuildConfigSection(Tabs.Settings)
 Window:SelectTab(1)
 
 Fluent:Notify({
-    Title = "Space Hub",
-    Content = "The script has been loaded.",
+    Title = "Notification",
+    Content = "The script has been loading",
     Duration = 8
 })
 Fluent:Notify({
-    Title = "Anti Afk - ON",
-    Content = "meow",
+    Title = "lyxme Hub No.1",
+    Content = "",
     Duration = 30
 })
 

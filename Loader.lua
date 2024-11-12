@@ -58,7 +58,7 @@ end)
 warn("[Anti Afk] - loaded successfully") 
 
 --<>----<>----<>----< Main Script >----<>----<>----<>--
-print("[Space Hub | Fisch]: loading...")
+print("[lyxme Hub | Fisch]: loading...")
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
@@ -78,7 +78,7 @@ local Tabs = {
     Teleports = Window:AddTab({ Title = "Teleports", Icon = "compass" }),
     Misc = Window:AddTab({ Title = "Misc", Icon = "file-text" }),
     Fun = Window:AddTab({ Title = "Fun", Icon = "coffee" }),
-    Webhook = Window:AddTab({ Title = "Webhook", Icon = "clock" }),
+    Webhook = Window:AddTab({ Title = "Webhook", Icon = "bell" }),
     Premium = Window:AddTab({ Title = "Premium", Icon = "diamond" }),
     Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 }
@@ -175,7 +175,7 @@ local AutoFish = false
 local autoShake2 = false
 local autoShake3 = false
 local AutoZoneCast = false
-local autoShakeDelay = 0.1
+local autoShakeDelay = 0
 local autoReel = false
 local AutoCast = false
 local Noclip = false
@@ -1212,7 +1212,7 @@ do
         print("Delay changed:", Value)
     end)
 
-    local ToggleWebhook = Tabs.Webhook:AddToggle("ToggleWebhook", {Title = "Webhook On/Off", Default = false })
+    local ToggleWebhook = Tabs.Webhook:AddToggle("ToggleWebhook", {Title = "Sent Webhook", Default = false })
     ToggleWebhook:OnChanged(function()
         WebhookLog = ToggleWebhook.Value
         WebhookManager()

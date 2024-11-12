@@ -819,7 +819,16 @@ do
         print("Auto Shake Mode:", Value)
     end)   
 
-    
+    local Dropdown = Genaral:AddDropdown("Dropdown", {
+    Title = "Select Rod",
+    Values = {"Flimsy Rod", "Traning Rod"},
+    Multi = false,
+    Default = 1,
+})
+
+Dropdown:OnChanged(function(Value)
+    Rod = Value
+end)
     
     local autoReelCastShakeT = Tabs.Genaral:AddToggle("autoReelCastShakeT", {Title = "Auto Farming", Default = false })
     autoReelCastShakeT:OnChanged(function(Value)
@@ -849,7 +858,7 @@ do
 
     local Toggle = Tabs.Genaral:AddToggle("MyToggle", {Title = "Equip Rod", Default = false })
     Toggle:OnChanged(function(Value)
-            Equiprod = Value
+            EquipRod = Value
         end)
     Options.MyToggle:SetValue(false)
     local AutoFreezeT = Tabs.Genaral:AddToggle("MyFreeze", {
@@ -1421,7 +1430,7 @@ UICorner.Parent = ImageButton
 --EquipRod
 spawn(function()
 while wait() do
-if AutoEquiprod then
+if AutoEquipRod then
 pcall(function()
 game.Players.LocalPlayer.Character.Humanoid:EquipTool(game:GetService("Players").LocalPlayer.Backpack:FindFirstChild(Rod))
 end)
@@ -1430,4 +1439,10 @@ end
 end)
 
 --Select Rod
---game.Players.LocalPlayer.Character.Humanoid:EquipTool(game:GetService("Players").LocalPlayer.Backpack:FindFirstChild(Weapon))
+function SelectRod(Rod)
+    if Rod == "Flimsy Rod" then
+        game.Players.LocalPlayer.Character.Humanoid:EquipTool(game:GetService("Players").LocalPlayer.Backpack:FindFirstChild(Rod))
+    elseif Rod == "Traning Rod" then
+        game.Players.LocalPlayer.Character.Humanoid:EquipTool(game:GetService("Players").LocalPlayer.Backpack:FindFirstChild(Rod))
+    end
+end

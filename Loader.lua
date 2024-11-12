@@ -846,10 +846,12 @@ do
             end
         end
     end)
-    
 
-
-    
+    local Toggle = Tabs.Genaral:AddToggle("MyToggle", {Title = "Equip Rod", Default = false })
+    Toggle:OnChanged(function(Value)
+            Equiprod = Value
+        end)
+    Options.MyToggle:SetValue(false)
     local AutoFreezeT = Tabs.Genaral:AddToggle("MyFreeze", {
         Title = "Freeze Position",
         Description = "Freezes player position and rotation",
@@ -1415,3 +1417,17 @@ end)
 
 UICorner.CornerRadius = UDim.new(0, 10)
 UICorner.Parent = ImageButton
+
+--EquipRod
+spawn(function()
+while wait() do
+if AutoEquiprod then
+pcall(function()
+game.Players.LocalPlayer.Character.Humanoid:EquipTool(game:GetService("Players").LocalPlayer.Backpack:FindFirstChild(Weapon))
+end)
+end
+end
+end)
+
+--Select Rod
+--game.Players.LocalPlayer.Character.Humanoid:EquipTool(game:GetService("Players").LocalPlayer.Backpack:FindFirstChild(Weapon))

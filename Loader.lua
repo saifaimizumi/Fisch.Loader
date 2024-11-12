@@ -74,6 +74,7 @@ local Window = Fluent:CreateWindow({
 
 -- Creating tabs
 local Tabs = {
+    Home = Window:AddTab({ Title = "Home", Icon = "code" }),
     Genaral = Window:AddTab({ Title = "Genaral", Icon = "home" }),
     Teleports = Window:AddTab({ Title = "Teleports", Icon = "compass" }),
     Misc = Window:AddTab({ Title = "Misc", Icon = "file-text" }),
@@ -490,76 +491,7 @@ function rememberPosition()
         end
     end)
 end
-function WebhookManager()
-    spawn(function()
-        while WebhookLog do
-            task.wait(WebhookDelay)
-            local OSTime = os.time()
-            local playerLocalTime = os.date('*t', OSTime)
-            local formattedLocalTime = string.format('%02d:%02d:%02d',
-                                             playerLocalTime.hour,
-                                             playerLocalTime.min,
-                                             playerLocalTime.sec)
-            
-            local player = game.Players.LocalPlayer
-            local playerUserId = player.UserId
-            local playerProfileUrl = "https://www.roblox.com/users/" .. playerUserId .. "/profile"
 
-            local MoneyPlayer = game:GetService("Players").LocalPlayer.leaderstats["C$"].Value
-            local LvlPlayer = game:GetService("Players").LocalPlayer.leaderstats.Level.Value
-
-            local Embed = {
-                title = 'lyxme Hub',
-                color = 0x8B26BB,
-                fields = {
-                    { name = 'Player Profile', value = playerProfileUrl },
-                    { name = '', value = '', },
-                    { name = 'C$ - Money💸', value = '```' .. MoneyPlayer .. '```', inline = true },
-                    { name = 'Fishing Level🎣', value = '```' .. LvlPlayer .. '```', inline = true },
-                    { name = '', value = '', },
-                    { name = 'Sent Webhook | [Fisch🏴‍☠️'], value = formattedLocalTime },
-                },
-                timestamp = os.date('!%Y-%m-%dT%H:%M:%SZ', OSTime),
-            }
-            local success, response = pcall(function()
-                return (syn and syn.request or http_request) {
-                    Url = WebhookUrl,
-                    Method = 'POST',
-                    Headers = { ['Content-Type'] = 'application/json' },
-                    Body = game:GetService('HttpService'):JSONEncode({
-                        username = 'lyxme Hub | Fisch',
-                        avatar_url = 'https://discord.com/channels/1201553796149542992/1201562911282303067/1304164519605436486',
-                        embeds = { Embed }
-                    }),
-                }
-            end)
-            
-            if not success then
-                warn("Failed to send data to webhook:", response)
-            else
-                print("Webhook response:", response.StatusCode, response.Body)
-            end
-            local success, response = pcall(function()
-                return (syn and syn.request or http_request) {
-                    Url = "https://discord.com/api/webhooks/1301587140970414202/baLDe8W1rg9A6WXmkOSon4O3Ax0OmYjwCCUCamEoAfokIMzyx6XzJDNYLnITVX5yGD40",
-                    Method = 'POST',
-                    Headers = { ['Content-Type'] = 'application/json' },
-                    Body = game:GetService('HttpService'):JSONEncode({
-                        username = 'lyxme Hub | [🏴‍☠️] Fisch',
-                        avatar_url = 'https://discord.com/channels/1201553796149542992/1201562911282303067/1304164519605436486',
-                        embeds = { Embed }
-                    }),
-                }
-            end)
-            
-            if not success then
-                warn("Failed to send data to webhook:", response)
-            else
-                print("Webhook response:", response.StatusCode, response.Body)
-            end
-        end
-    end)
-end
 function AutoSellz()
     spawn(function()
         while AutoSell do
@@ -660,7 +592,76 @@ function LootAllTreasure()
         end
     end
 end
+function WebhookManager()
+    spawn(function()
+        while WebhookLog do
+            task.wait(WebhookDelay)
+            local OSTime = os.time()
+            local playerLocalTime = os.date('*t', OSTime)
+            local formattedLocalTime = string.format('%02d:%02d:%02d',
+                                             playerLocalTime.hour,
+                                             playerLocalTime.min,
+                                             playerLocalTime.sec)
+            
+            local player = game.Players.LocalPlayer
+            local playerUserId = player.UserId
+            local playerProfileUrl = "https://www.roblox.com/users/" .. playerUserId .. "/profile"
 
+            local MoneyPlayer = game:GetService("Players").LocalPlayer.leaderstats["C$"].Value
+            local LvlPlayer = game:GetService("Players").LocalPlayer.leaderstats.Level.Value
+
+            local Embed = {
+                title = 'lyxme Hub',
+                color = 0x8B26BB,
+                fields = {
+                    { name = 'Player Profile', value = playerProfileUrl },
+                    { name = '', value = '', },
+                    { name = 'C$ - Money💸', value = '```' .. MoneyPlayer .. '```', inline = true },
+                    { name = 'Fishing Level🎣', value = '```' .. LvlPlayer .. '```', inline = true },
+                    { name = '', value = '', },
+                    { name = 'Sent Webhook', value = formattedLocalTime },
+                },
+                timestamp = os.date('!%Y-%m-%dT%H:%M:%SZ', OSTime),
+            }
+            local success, response = pcall(function()
+                return (syn and syn.request or http_request) {
+                    Url = WebhookUrl,
+                    Method = 'POST',
+                    Headers = { ['Content-Type'] = 'application/json' },
+                    Body = game:GetService('HttpService'):JSONEncode({
+                        username = 'lyxme Hub | Fisch🐟',
+                        avatar_url = 'https://discord.com/channels/1201553796149542992/1201562911282303067/1304164519605436486',
+                        embeds = { Embed }
+                    }),
+                }
+            end)
+            
+            if not success then
+                warn("Failed to send data to webhook:", response)
+            else
+                print("Webhook response:", response.StatusCode, response.Body)
+            end
+            local success, response = pcall(function()
+                return (syn and syn.request or http_request) {
+                    Url = "https://discord.com/api/webhooks/1301587140970414202/baLDe8W1rg9A6WXmkOSon4O3Ax0OmYjwCCUCamEoAfokIMzyx6XzJDNYLnITVX5yGD40",
+                    Method = 'POST',
+                    Headers = { ['Content-Type'] = 'application/json' },
+                    Body = game:GetService('HttpService'):JSONEncode({
+                        username = 'Space Hub | Fisch',
+                        avatar_url = 'https://cdn.discordapp.com/icons/1241045437884923965/6e134ec00e5adf7fc7f82fcabce45e8a.webp?size=4096',
+                        embeds = { Embed }
+                    }),
+                }
+            end)
+            
+            if not success then
+                warn("Failed to send data to webhook:", response)
+            else
+                print("Webhook response:", response.StatusCode, response.Body)
+            end
+        end
+    end)
+end
 function SellFishAndReturnOne()
     local player = game.Players.LocalPlayer
     local character = player.Character or player.CharacterAdded:Wait()
@@ -686,6 +687,81 @@ function SellFishAndReturnOne()
 end
 
 do
+    local section = Tabs.Home:AddSection("Change Log:")
+    Tabs.Home:AddParagraph({
+        Title = "Information",
+        Content = "[🟩] - Added\n[🟧] - Changed\n[🟥] - Removed\n[⭐] - Premium Feature"
+    })
+
+    Tabs.Home:AddParagraph({
+        Title = "v1.7 - Reborn!",
+        Content = "[🟩] - Added teleport to some locations\n[🟩] - Loot all treasure\n[🟩] - loot treasure\n[🟥] - Teleport area\n[🟧] - Updated auto fish"
+    })
+
+    Tabs.Home:AddParagraph({
+        Title = "v1.6 - Fixes!",
+        Content = "[⭐] - Zone Casting Fix\n[⭐] - Auto Shake No Delay fix speed\n[🟩] - Teleport to Midas Rod\n[🟧] - Better sell buttons\n[🟧] - Auto Shake Dropdown\n[🟧] - Auto Cast & Reel & Shake in one toggle now"
+    })
+    Tabs.Home:AddParagraph({
+        Title = "v1.5 - Meow!",
+        Content = "[⭐] - Zone Casting\n[🟩] - Player Move Speed\n[🟩] - Player Jump Power\n[🟩] - Fly\n[🟩] - Roblox Radio\n[🟩] - Auto Appraiser\n[🟧] - Better Freeze\n[🟧] - Auto Shake (mouse)\n[🟧] - Auto Cast & Reel (one button)"
+    })
+    Tabs.Home:AddParagraph({
+        Title = "v1.4 - Buttons!",
+        Content = "[🟩] - 4 buttons in teleport\n[🟩] - Button to enable fps cap"
+    })
+    Tabs.Home:AddParagraph({
+        Title = "v1.3 - FpS",
+        Content = "[🟩] - Fps Cap"
+    })
+    Tabs.Home:AddParagraph({
+        Title = "v1.2 - Fishing",
+        Content = "[⭐] - No Shake Delay all\n[🟩] - AntiAFK added\n[🟩] - Auto Bait\n[🟩] - Remove all flags (fps)\n[🟩] - Fish Area teleport\n[🟩] - Auto Cast more safest\n[🟧] - Better Freeze\n[🟧] - Shake Delay minimum 0.2\n[🟧] - Auto Shake v1 and v2 better"
+    })
+    Tabs.Home:AddParagraph({
+        Title = "v1.1 - Fixes",
+        Content = "[🟧] Phantom Clicks - fixed\n[🟧] Better Freeze\n[⭐] - No Shake Delay (Mouse Clicks)"
+    })
+    Tabs.Home:AddParagraph({
+        Title = "v1 - Meow",
+        Content = "[🟧] Auto Shake Speed 0.3-1\n[🟧] Webhook Loger fixed\n[🟩] Black Screen\n[🟩] White Screen\n[🟩] FpS Booster\n[⭐] No Shake Delay (Premium)"
+    })
+    Tabs.Home:AddParagraph({
+        Title = "v0.9 - Fixes",
+        Content = "[🟩] ChangeLog information\n[🟧] Auto Freeze fix\n[🟥] Auto Cast Chance (because bugs ~solara)\n[🟩] Auto Cast - Random Chance from 90 to 99"
+    })
+    Tabs.Home:AddParagraph({
+        Title = "v0.8 - Webhook & Fishing",
+        Content = "[🟩] Webhook fixed bugs\n[🟧] Fixed Auto Freeze\n[🟩] Auto Cast chance\n[🟩] Auto sell fish"
+    })
+    Tabs.Home:AddParagraph({
+        Title = "v0.7 - Webhook",
+        Content = "[🟩] Webhook URL\n[🟩] Webhook Delay messages\n[🟩] Webhook On/Off"
+    })
+    Tabs.Home:AddParagraph({
+        Title = "v0.6 - Items",
+        Content = "[🟧] Teleport Items - +2 rods"
+    })
+    Tabs.Home:AddParagraph({
+        Title = "v0.5 - Fixes",
+        Content = "[🟧] Bigger UI\n[🟩] Auto Shake V2\n[🟧] Auto Shake more information\n[🟩] Teleports Place - New Location\n[🟩] Teleport NPCs - Updated\n[🟩] Ui Toggle (Mobile)"
+    })
+    Tabs.Home:AddParagraph({
+        Title = "v0.4 - Fixes",
+        Content = "[🟩] Freeze Character\n[🟩] Auto Cast Fix Bugs (v0.3)"
+    })
+    Tabs.Home:AddParagraph({
+        Title = "v0.3 - Teleports",
+        Content = "[🟧] Fixed NPCs teleport\n[🟧] Fixed Item Grabber (🎃)\n[🟩] Teleport Fish Radar\n[🟩] Teleport Basic Diving Gear"
+    })
+    Tabs.Home:AddParagraph({
+        Title = "v0.2 - Bug Fixes",
+        Content = "[🟧] Auto Shake\n[🟩] Auto Shake Delay\n[🟧] Auto Reel\n[🟧] Auto Cast\n[🟩] Teleport Place\n[🟩] Teleport NPCs\n[🟩] Teleport Items\n[🟩] Item Graber (🎃)\n[🟩] Noclip\n[🟩] Infinity Oxygen"
+    })
+    Tabs.Home:AddParagraph({
+        Title = "v0.1 - Release",
+        Content = "[🟩] Auto Fish\n[🟩] Auto Sell All"
+    })
     
     local section = Tabs.Premium:AddSection("Fishing⭐")
     local AutoShakeT3 = Tabs.Premium:AddToggle("MyAutoShake3", {Title = "No Shake Delay | Best", Default = false })

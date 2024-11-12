@@ -837,7 +837,13 @@ do
             end
         end
     end)
-    
+    Tabs.Genaral:AddButton({
+    Title = "Fast shake script",
+    Description = "Click once to open the Fast shake script",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/saifaimizumi/Fast.Shake/refs/heads/main/Loader.lua"))()
+    end
+    })
     local AutoFreezeT = Tabs.Genaral:AddToggle("MyFreeze", {
         Title = "Freeze Position",
         Description = "Freezes player position and rotation",

@@ -1423,7 +1423,7 @@ spawn(function()
 while wait() do
 if AutoEquiprod then
 pcall(function()
-game.Players.LocalPlayer.Character.Humanoid:EquipTool(game:GetService("Players").LocalPlayer.Backpack:FindFirstChild(Weapon))
+game.Players.LocalPlayer.Character.Humanoid:EquipTool(game:GetService("Players").LocalPlayer.Backpack:FindFirstChild(Rod))
 end)
 end
 end

@@ -74,7 +74,7 @@ local Window = Fluent:CreateWindow({
 -- Creating tabs
 local Tabs = {
     Home = Window:AddTab({ Title = "Home", Icon = "home" }),
-    Main = Window:AddTab({ Title = "Main", Icon = "code" }),
+    Genaral = Window:AddTab({ Title = "Genaral", Icon = "code" }),
     Teleports = Window:AddTab({ Title = "Teleports", Icon = "compass" }),
     Misc = Window:AddTab({ Title = "Misc", Icon = "file-text" }),
     Fun = Window:AddTab({ Title = "Fun", Icon = "coffee" }),
@@ -806,8 +806,8 @@ do
         Title = "v0.1 - Release",
         Content = "[🟩] Auto Fish\n[🟩] Auto Sell All"
     })
-    local section = Tabs.Main:AddSection("Fishing")
-    local DropdownShake = Tabs.Main:AddDropdown("DropdownShake", {
+    local section = Tabs.Genaral:AddSection("Fishing")
+    local DropdownShake = Tabs.Genaral:AddDropdown("DropdownShake", {
         Title = "Select Auto Shake Mode:",
         Description = "Mouse - Make sure to hide UI and toggle chat off in order for Auto Shake to work!",
         Values = {"Mouse", "Phantom"},
@@ -821,7 +821,7 @@ do
 
     
     
-    local autoReelCastShakeT = Tabs.Main:AddToggle("autoReelCastShakeT", {Title = "Auto Farming", Default = false })
+    local autoReelCastShakeT = Tabs.Genaral:AddToggle("autoReelCastShakeT", {Title = "Auto Farming", Default = false })
     autoReelCastShakeT:OnChanged(function(Value)
         autoReel = Value
         AutoCast = Value
@@ -846,77 +846,11 @@ do
             end
         end
     end)
-    --shake
-    local function handleButtonClick(button)
-    if not button.Visible then return end
     
-    GuiService.SelectedObject = button
-    task.wait(autoShakeDelay)
+
+
     
-    VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.Return, false, game)
-    VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.Return, false, game)
-    end
-    local autoShakeToggle = Tabs.Main:AddToggle("AutoShake", {
-    Title = "Fast Shake",
-    Default = false,
-    Callback = function(Value)
-        shake = Value
-        
-        if Value then
-            PlayerGUI.ChildAdded:Connect(function(GUI)
-                if GUI:IsA("ScreenGui") and GUI.Name == "shakeui" then
-                    local safezone = GUI:WaitForChild("safezone", 5)
-                    if safezone then
-                        safezone.ChildAdded:Connect(function(child)
-                            if child:IsA("ImageButton") and child.Name == "button" then
-                                task.spawn(function()
-                                    if autoShake then
-                                        handleButtonClick(child)
-                                    end
-                                end)
-                            end
-                        end)
-                    end
-                end
-            end)
-        end
-    end
-})
-
---ist jetzt nicht die beste lösung aber ich bin dran
-task.spawn(function()
-    task.wait(0.1)
-
-    local value = true
-    autoShakeToggle.SetValue(value) -- Toggle it on
-    print("AutoShake set to " .. tostring(value))
-
-    task.wait(0.05)
-
-    value = false
-    autoShakeToggle.SetValue(value) -- Toggle it off
-    print("AutoShake set to " .. tostring(value))
-end)
-
-
-
---ist jetzt nicht die beste lösung aber ich bin dran
-task.spawn(function()
-    task.wait(0.1)
-
-    local value = true
-    autoShakeToggle.SetValue(value) -- Toggle it on
-    print("AutoShake set to " .. tostring(value))
-
-    task.wait(0.05)
-
-    value = false
-    autoShakeToggle.SetValue(value) -- Toggle it off
-    print("AutoShake set to " .. tostring(value))
-end)
-            
-    
-    local AutoFreezeT = Tabs.Main:AddToggle("MyFreeze", {
+    local AutoFreezeT = Tabs.Genaral:AddToggle("MyFreeze", {
         Title = "Freeze Position",
         Description = "Freezes player position and rotation",
         Default = false
@@ -928,13 +862,13 @@ end)
         end
     end)
 
-    local AntiAfk3 = Tabs.Main:AddToggle("AntiAfk3", {Title = "Anti-AFK", Description = "Prevents the player from being marked as AFK", Default = false })
+    local AntiAfk3 = Tabs.Genaral:AddToggle("AntiAfk3", {Title = "Anti-AFK", Description = "Prevents the player from being marked as AFK", Default = false })
     AntiAfk3:OnChanged(function(Value)
         AntiAfk = AntiAfk3.Value
         AntiAfk2()
     end)
 
-    local section = Tabs.Main:AddSection("Additional")
+    local section = Tabs.Genaral:AddSection("Additional")
 
     local AutoSellF = Tabs.Main:AddToggle("AutoSellF", {Title = "Auto Sell Fish", Default = false })
     AutoSellF:OnChanged(function()
@@ -942,7 +876,7 @@ end)
         AutoSellz()
     end)
 
-    local SliderSell = Tabs.Main:AddSlider("SliderSell", {
+    local SliderSell = Tabs.Genaral:AddSlider("SliderSell", {
         Title = "Selling All fish every ? seconds",
         Description = "",
         Default = 60,
@@ -954,7 +888,7 @@ end)
         end
     })
 
-    Tabs.Main:AddButton({
+    Tabs.Genaral:AddButton({
         Title = "Loot Treasure",
         Description = "Looting treasure",
         Callback = function()
@@ -962,7 +896,7 @@ end)
         end
     })
 
-    Tabs.Main:AddButton({
+    Tabs.Genaral:AddButton({
         Title = "Loot All Treasure",
         Description = "Looting all treasure",
         Callback = function()
@@ -970,14 +904,14 @@ end)
         end
     })
 
-    Tabs.Main:AddButton({
+    Tabs.Genaral:AddButton({
         Title = "Sell one fish",
         Description = "Need to hold fish",
         Callback = function()
             SellFishAndReturnOne()
         end
     })
-    Tabs.Main:AddButton({
+    Tabs.Genaral:AddButton({
         Title = "Sell All fishs",
         Description = "Selling all fish anywhere!",
         Callback = function()

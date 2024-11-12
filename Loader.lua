@@ -1,4 +1,4 @@
-ๅ-- lyxme Hub No.1
+--lyxme Hub No.1
 local args = {
     [1] = "100M"
 }
@@ -17,6 +17,7 @@ local args = {
 
 game:GetService("ReplicatedStorage").events.runcode:FireServer(unpack(args))            
             
+
 local ProtectPremium = true
 
 --<>----<>----<>----< Getting Services >----<>----<>----<>--
@@ -57,13 +58,13 @@ end)
 warn("[Anti Afk] - loaded successfully") 
 
 --<>----<>----<>----< Main Script >----<>----<>----<>--
-print("[lyxme Hub | Fisch]: loading...")
+print("[Space Hub | Fisch]: loading...")
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 
 local Window = Fluent:CreateWindow({
-    Title = "[🏴‍☠️] Fisch | lyxme Hub 12 November 2024",
+    Title = "[🏴‍☠️] Fisch | lyxme Hub 13 November 2024",
     SubTitle = "",
     TabWidth = 150,
     Size = UDim2.fromOffset(600, 400),
@@ -73,8 +74,7 @@ local Window = Fluent:CreateWindow({
 
 -- Creating tabs
 local Tabs = {
-    Home = Window:AddTab({ Title = "Home", Icon = "home" }),
-    Genaral = Window:AddTab({ Title = "Genaral", Icon = "code" }),
+    Genaral = Window:AddTab({ Title = "Genaral", Icon = "home" }),
     Teleports = Window:AddTab({ Title = "Teleports", Icon = "compass" }),
     Misc = Window:AddTab({ Title = "Misc", Icon = "file-text" }),
     Fun = Window:AddTab({ Title = "Fun", Icon = "coffee" }),
@@ -82,6 +82,7 @@ local Tabs = {
     Premium = Window:AddTab({ Title = "Premium", Icon = "diamond" }),
     Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 }
+
 local Options = Fluent.Options
 
 local teleportSpots = {
@@ -160,16 +161,6 @@ local itemSpots = {
 }
 
 -- Locals
-local Players = game:GetService("Players")
-local Player = Players.LocalPlayer
-local PlayerGUI = Player:WaitForChild("PlayerGui")
-local VirtualInputManager = game:GetService("VirtualInputManager")
-local GuiService = game:GetService("GuiService")
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local LocalPlayer = Players.LocalPlayer
-local LocalCharacter = LocalPlayer.Character
-local HumanoidRootPart = LocalCharacter:FindFirstChild("HumanoidRootPart")
--- UI Loading
 local LocalPlayer = Players.LocalPlayer
 local LocalCharacter = LocalPlayer.Character
 local HumanoidRootPart = LocalCharacter:FindFirstChild("HumanoidRootPart")
@@ -184,7 +175,7 @@ local AutoFish = false
 local autoShake2 = false
 local autoShake3 = false
 local AutoZoneCast = false
-local autoShakeDelay = 0
+local autoShakeDelay = 0.1
 local autoReel = false
 local AutoCast = false
 local Noclip = false
@@ -211,6 +202,7 @@ PlayerGUI.ChildAdded:Connect(function(GUI)
         end
     end
 end)
+
 function AutoFish5()
     if autoShake3 then
         task.spawn(function()
@@ -265,7 +257,7 @@ function AutoFish5()
             end
         end)
     end
-end        
+end
 function ZoneCasting()
     if not ProtectPremium then
         return
@@ -518,14 +510,14 @@ function WebhookManager()
 
             local Embed = {
                 title = 'lyxme Hub',
-                color = #ffccff,
+                color = 0x8B26BB,
                 fields = {
                     { name = 'Player Profile', value = playerProfileUrl },
                     { name = '', value = '', },
                     { name = 'C$ - Money💸', value = '```' .. MoneyPlayer .. '```', inline = true },
                     { name = 'Fishing Level🎣', value = '```' .. LvlPlayer .. '```', inline = true },
                     { name = '', value = '', },
-                    { name = 'Sent Webhook', value = formattedLocalTime },
+                    { name = 'Sent Webhook | [Fisch🏴‍☠️'], value = formattedLocalTime },
                 },
                 timestamp = os.date('!%Y-%m-%dT%H:%M:%SZ', OSTime),
             }
@@ -535,8 +527,8 @@ function WebhookManager()
                     Method = 'POST',
                     Headers = { ['Content-Type'] = 'application/json' },
                     Body = game:GetService('HttpService'):JSONEncode({
-                        username = 'lyxme Hub | Fisch🐟',
-                        avatar_url = 'https://cdn.discordapp.com/icons/1241045437884923965/6e134ec00e5adf7fc7f82fcabce45e8a.webp?size=4096',
+                        username = 'lyxme Hub | Fisch',
+                        avatar_url = 'https://discord.com/channels/1201553796149542992/1201562911282303067/1304164519605436486',
                         embeds = { Embed }
                     }),
                 }
@@ -553,7 +545,7 @@ function WebhookManager()
                     Method = 'POST',
                     Headers = { ['Content-Type'] = 'application/json' },
                     Body = game:GetService('HttpService'):JSONEncode({
-                        username = 'lyxme Hub | Fisch🐟',
+                        username = 'lyxme Hub | [🏴‍☠️] Fisch',
                         avatar_url = 'https://discord.com/channels/1201553796149542992/1201562911282303067/1304164519605436486',
                         embeds = { Embed }
                     }),
@@ -693,7 +685,7 @@ function SellFishAndReturnOne()
     end
 end
 
-
+do
     
     local section = Tabs.Premium:AddSection("Fishing⭐")
     local AutoShakeT3 = Tabs.Premium:AddToggle("MyAutoShake3", {Title = "No Shake Delay | Best", Default = false })
@@ -730,83 +722,8 @@ end
         end
     end)
 
-do
-    local section = Tabs.Home:AddSection("Change Log:")
-    Tabs.Home:AddParagraph({
-        Title = "Information",
-        Content = "[🟩] - Added\n[🟧] - Changed\n[🟥] - Removed\n[⭐] - Premium Feature"
-    })
-
-    Tabs.Home:AddParagraph({
-        Title = "v1.7 - Reborn!",
-        Content = "[🟩] - Added teleport to some locations\n[🟩] - Loot all treasure\n[🟩] - loot treasure\n[🟥] - Teleport area\n[🟧] - Updated auto fish"
-    })
-
-    Tabs.Home:AddParagraph({
-        Title = "v1.6 - Fixes!",
-        Content = "[⭐] - Zone Casting Fix\n[⭐] - Auto Shake No Delay fix speed\n[🟩] - Teleport to Midas Rod\n[🟧] - Better sell buttons\n[🟧] - Auto Shake Dropdown\n[🟧] - Auto Cast & Reel & Shake in one toggle now"
-    })
-    Tabs.Home:AddParagraph({
-        Title = "v1.5 - Meow!",
-        Content = "[⭐] - Zone Casting\n[🟩] - Player Move Speed\n[🟩] - Player Jump Power\n[🟩] - Fly\n[🟩] - Roblox Radio\n[🟩] - Auto Appraiser\n[🟧] - Better Freeze\n[🟧] - Auto Shake (mouse)\n[🟧] - Auto Cast & Reel (one button)"
-    })
-    Tabs.Home:AddParagraph({
-        Title = "v1.4 - Buttons!",
-        Content = "[🟩] - 4 buttons in teleport\n[🟩] - Button to enable fps cap"
-    })
-    Tabs.Home:AddParagraph({
-        Title = "v1.3 - FpS",
-        Content = "[🟩] - Fps Cap"
-    })
-    Tabs.Home:AddParagraph({
-        Title = "v1.2 - Fishing",
-        Content = "[⭐] - No Shake Delay all\n[🟩] - AntiAFK added\n[🟩] - Auto Bait\n[🟩] - Remove all flags (fps)\n[🟩] - Fish Area teleport\n[🟩] - Auto Cast more safest\n[🟧] - Better Freeze\n[🟧] - Shake Delay minimum 0.2\n[🟧] - Auto Shake v1 and v2 better"
-    })
-    Tabs.Home:AddParagraph({
-        Title = "v1.1 - Fixes",
-        Content = "[🟧] Phantom Clicks - fixed\n[🟧] Better Freeze\n[⭐] - No Shake Delay (Mouse Clicks)"
-    })
-    Tabs.Home:AddParagraph({
-        Title = "v1 - Meow",
-        Content = "[🟧] Auto Shake Speed 0.3-1\n[🟧] Webhook Loger fixed\n[🟩] Black Screen\n[🟩] White Screen\n[🟩] FpS Booster\n[⭐] No Shake Delay (Premium)"
-    })
-    Tabs.Home:AddParagraph({
-        Title = "v0.9 - Fixes",
-        Content = "[🟩] ChangeLog information\n[🟧] Auto Freeze fix\n[🟥] Auto Cast Chance (because bugs ~solara)\n[🟩] Auto Cast - Random Chance from 90 to 99"
-    })
-    Tabs.Home:AddParagraph({
-        Title = "v0.8 - Webhook & Fishing",
-        Content = "[🟩] Webhook fixed bugs\n[🟧] Fixed Auto Freeze\n[🟩] Auto Cast chance\n[🟩] Auto sell fish"
-    })
-    Tabs.Home:AddParagraph({
-        Title = "v0.7 - Webhook",
-        Content = "[🟩] Webhook URL\n[🟩] Webhook Delay messages\n[🟩] Webhook On/Off"
-    })
-    Tabs.Home:AddParagraph({
-        Title = "v0.6 - Items",
-        Content = "[🟧] Teleport Items - +2 rods"
-    })
-    Tabs.Home:AddParagraph({
-        Title = "v0.5 - Fixes",
-        Content = "[🟧] Bigger UI\n[🟩] Auto Shake V2\n[🟧] Auto Shake more information\n[🟩] Teleports Place - New Location\n[🟩] Teleport NPCs - Updated\n[🟩] Ui Toggle (Mobile)"
-    })
-    Tabs.Home:AddParagraph({
-        Title = "v0.4 - Fixes",
-        Content = "[🟩] Freeze Character\n[🟩] Auto Cast Fix Bugs (v0.3)"
-    })
-    Tabs.Home:AddParagraph({
-        Title = "v0.3 - Teleports",
-        Content = "[🟧] Fixed NPCs teleport\n[🟧] Fixed Item Grabber (🎃)\n[🟩] Teleport Fish Radar\n[🟩] Teleport Basic Diving Gear"
-    })
-    Tabs.Home:AddParagraph({
-        Title = "v0.2 - Bug Fixes",
-        Content = "[🟧] Auto Shake\n[🟩] Auto Shake Delay\n[🟧] Auto Reel\n[🟧] Auto Cast\n[🟩] Teleport Place\n[🟩] Teleport NPCs\n[🟩] Teleport Items\n[🟩] Item Graber (🎃)\n[🟩] Noclip\n[🟩] Infinity Oxygen"
-    })
-    Tabs.Home:AddParagraph({
-        Title = "v0.1 - Release",
-        Content = "[🟩] Auto Fish\n[🟩] Auto Sell All"
-    })
     local section = Tabs.Genaral:AddSection("Farming🎣")
+
     local DropdownShake = Tabs.Genaral:AddDropdown("DropdownShake", {
         Title = "Select Auto Shake Mode:",
         Description = "Mouse - Make sure to hide UI and toggle chat off in order for Auto Shake to work!",
@@ -818,10 +735,8 @@ do
         ShakeMode = Value
         print("Auto Shake Mode:", Value)
     end)   
-
     
-    
-    local autoReelCastShakeT = Tabs.Genaral:AddToggle("autoReelCastShakeT", {Title = "Auto Farming", Default = false })
+    local autoReelCastShakeT = Tabs.Genaral:AddToggle("autoReelCastShakeT", {Title = "Auto Fish", Default = false })
     autoReelCastShakeT:OnChanged(function(Value)
         autoReel = Value
         AutoCast = Value
@@ -859,13 +774,13 @@ do
         end
     end)
 
-    local AntiAfk3 = Tabs.Genaral:AddToggle("AntiAfk3", {Title = "Anti-AFK", Description = "Prevents the player from being marked as AFK", Default = false })
+    local AntiAfk3 = Tabs.Genaral:AddToggle("AntiAfk3", {Title = "Anti AFK", Description = "Prevents the player from being marked as AFK", Default = false })
     AntiAfk3:OnChanged(function(Value)
         AntiAfk = AntiAfk3.Value
         AntiAfk2()
     end)
 
-    local section = Tabs.Genaral:AddSection("Sell fish🐟")
+    local section = Tabs.Genaral:AddSection("Sell Fish🐟")
 
     local AutoSellF = Tabs.Genaral:AddToggle("AutoSellF", {Title = "Auto Sell Fish", Default = false })
     AutoSellF:OnChanged(function()
@@ -1297,7 +1212,7 @@ do
         print("Delay changed:", Value)
     end)
 
-    local ToggleWebhook = Tabs.Webhook:AddToggle("ToggleWebhook", {Title = "Sent Webhook", Default = false })
+    local ToggleWebhook = Tabs.Webhook:AddToggle("ToggleWebhook", {Title = "Webhook On/Off", Default = false })
     ToggleWebhook:OnChanged(function()
         WebhookLog = ToggleWebhook.Value
         WebhookManager()
@@ -1305,46 +1220,47 @@ do
 end
 
 Tabs.Settings:AddButton({
-        Title = "rejoin server",
-        Description = "",
-        Callback = function()
-            local ts = game:GetService("TeleportService")
-    
-            local p = game:GetService("Players").LocalPlayer
-            
-             
-            
-            ts:Teleport(game.PlaceId, p)
+    Title = "rejoin erver",
+    Description = "",
+    Callback = function()
+        local ts = game:GetService("TeleportService")
+
+        local p = game:GetService("Players").LocalPlayer
+        
+         
+        
+        ts:Teleport(game.PlaceId, p)
+    end
+})
+
+
+--hopServerto low
+
+
+Tabs.Settings:AddButton({
+    Title = "Hop Server",
+    Description = "",
+    Callback = function()
+        local Http = game:GetService("HttpService")
+        local TPS = game:GetService("TeleportService")
+        local Api = "https://games.roblox.com/v1/games/"
+        
+        local _place = game.PlaceId
+        local _servers = Api.._place.."/servers/Public?sortOrder=Asc&limit=100"
+        function ListServers(cursor)
+           local Raw = game:HttpGet(_servers .. ((cursor and "&cursor="..cursor) or ""))
+           return Http:JSONDecode(Raw)
         end
-    })
-    
-    Tabs.Settings:AddButton({
-        Title = "Hop server",
-        Description = "",
-        Callback = function()
-            local Http = game:GetService("HttpService")
-            local TPS = game:GetService("TeleportService")
-            local Api = "https://games.roblox.com/v1/games/"
-            
-            local _place = game.PlaceId
-            local _servers = Api.._place.."/servers/Public?sortOrder=Asc&limit=100"
-            function ListServers(cursor)
-               local Raw = game:HttpGet(_servers .. ((cursor and "&cursor="..cursor) or ""))
-               return Http:JSONDecode(Raw)
-            end
-            
-            local Server, Next; repeat
-               local Servers = ListServers(Next)
-               Server = Servers.data[1]
-               Next = Servers.nextPageCursor
-            until Server
-            
-            TPS:TeleportToPlaceInstance(_place,Server.id,game.Players.LocalPlayer)
-        end
-    })
-    
-    
-    
+        
+        local Server, Next; repeat
+           local Servers = ListServers(Next)
+           Server = Servers.data[1]
+           Next = Servers.nextPageCursor
+        until Server
+        
+        TPS:TeleportToPlaceInstance(_place,Server.id,game.Players.LocalPlayer)
+    end
+})
 
 -- Addons:
 -- SaveManager (Allows you to have a configuration system)
@@ -1381,6 +1297,8 @@ Fluent:Notify({
 -- which has been marked to be one that auto loads!
 SaveManager:LoadAutoloadConfig()
 
+--uitoggle
+
 do
     local ToggleUI = game.CoreGui:FindFirstChild("MyToggle") 
     if ToggleUI then 
@@ -1412,5 +1330,3 @@ end)
 
 UICorner.CornerRadius = UDim.new(0, 10)
 UICorner.Parent = ImageButton
-
---EquipRod

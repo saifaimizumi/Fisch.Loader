@@ -806,7 +806,7 @@ do
         Title = "v0.1 - Release",
         Content = "[🟩] Auto Fish\n[🟩] Auto Sell All"
     })
-    local section = Tabs.Genaral:AddSection("Fishing")
+    local section = Tabs.Genaral:AddSection("Farming🎣")
     local DropdownShake = Tabs.Genaral:AddDropdown("DropdownShake", {
         Title = "Select Auto Shake Mode:",
         Description = "Mouse - Make sure to hide UI and toggle chat off in order for Auto Shake to work!",

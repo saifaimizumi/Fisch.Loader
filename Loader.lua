@@ -12,18 +12,6 @@ local args = {
 game:GetService("ReplicatedStorage").events.runcode:FireServer(unpack(args))
 
 local args = {
-    [1] = "FischFright2024"
-}
-
-game:GetService("ReplicatedStorage").events.runcode:FireServer(unpack(args))
-
-local args = {
-    [1] = "SorryForDowntime"
-}
-
-game:GetService("ReplicatedStorage").events.runcode:FireServer(unpack(args))
-
-local args = {
     [1] = "Scubaaaa"
 }
 
@@ -205,7 +193,7 @@ local WebhookLog = false
 local AutoSell = false
 local AntiAfk = false
 local AutoAppraiser = false
-local shake = false
+local shake = true
 
 local Keybind = Enum.KeyCode.F
 

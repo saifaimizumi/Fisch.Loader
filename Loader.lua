@@ -819,16 +819,7 @@ do
         print("Auto Shake Mode:", Value)
     end)   
 
-    local Dropdown = Genaral:AddDropdown("Dropdown", {
-    Title = "Select Rod",
-    Values = {"Flimsy Rod", "Traning Rod"},
-    Multi = false,
-    Default = 1,
-})
-
-Dropdown:OnChanged(function(Value)
-    Rod = Value
-end)
+    
     
     local autoReelCastShakeT = Tabs.Genaral:AddToggle("autoReelCastShakeT", {Title = "Auto Farming", Default = false })
     autoReelCastShakeT:OnChanged(function(Value)

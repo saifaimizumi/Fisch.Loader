@@ -172,6 +172,16 @@ local itemSpots = {
 }
 
 -- Locals
+local Players = game:GetService("Players")
+local Player = Players.LocalPlayer
+local PlayerGUI = Player:WaitForChild("PlayerGui")
+local VirtualInputManager = game:GetService("VirtualInputManager")
+local GuiService = game:GetService("GuiService")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local LocalPlayer = Players.LocalPlayer
+local LocalCharacter = LocalPlayer.Character
+local HumanoidRootPart = LocalCharacter:FindFirstChild("HumanoidRootPart")
+-- UI Loading
 local LocalPlayer = Players.LocalPlayer
 local LocalCharacter = LocalPlayer.Character
 local HumanoidRootPart = LocalCharacter:FindFirstChild("HumanoidRootPart")
@@ -195,6 +205,7 @@ local WebhookLog = false
 local AutoSell = false
 local AntiAfk = false
 local AutoAppraiser = false
+local shake = false
 
 local Keybind = Enum.KeyCode.F
 
@@ -848,6 +859,75 @@ do
             end
         end
     end)
+    --shake
+    local function handleButtonClick(button)
+    if not button.Visible then return end
+    
+    GuiService.SelectedObject = button
+    task.wait(autoShakeDelay)
+    
+    VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.Return, false, game)
+    VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.Return, false, game)
+    end
+    local autoShakeToggle = Tabs.Genaral:AddToggle("AutoShake", {
+    Title = "Fast shake",
+    Default = true,
+    Callback = function(Value)
+        autoShake = Value
+        
+        if Value then
+            PlayerGUI.ChildAdded:Connect(function(GUI)
+                if GUI:IsA("ScreenGui") and GUI.Name == "shakeui" then
+                    local safezone = GUI:WaitForChild("safezone", 5)
+                    if safezone then
+                        safezone.ChildAdded:Connect(function(child)
+                            if child:IsA("ImageButton") and child.Name == "button" then
+                                task.spawn(function()
+                                    if autoShake then
+                                        handleButtonClick(child)
+                                    end
+                                end)
+                            end
+                        end)
+                    end
+                end
+            end)
+        end
+    end
+})
+
+--ist jetzt nicht die beste lösung aber ich bin dran
+task.spawn(function()
+    task.wait(0.1)
+
+    local value = true
+    autoShakeToggle.SetValue(value) -- Toggle it on
+    print("AutoShake set to " .. tostring(value))
+
+    task.wait(0.05)
+
+    value = false
+    autoShakeToggle.SetValue(value) -- Toggle it off
+    print("AutoShake set to " .. tostring(value))
+end)
+
+
+
+--ist jetzt nicht die beste lösung aber ich bin dran
+task.spawn(function()
+    task.wait(0.1)
+
+    local value = true
+    autoShakeToggle.SetValue(value) -- Toggle it on
+    print("AutoShake set to " .. tostring(value))
+
+    task.wait(0.05)
+
+    value = false
+    autoShakeToggle.SetValue(value) -- Toggle it off
+    print("AutoShake set to " .. tostring(value))
+end)
+            
     
     local AutoFreezeT = Tabs.Main:AddToggle("MyFreeze", {
         Title = "Freeze Position",

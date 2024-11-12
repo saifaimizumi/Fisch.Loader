@@ -846,6 +846,7 @@ do
             end
         end
     end)
+    
     local AutoFreezeT = Tabs.Genaral:AddToggle("MyFreeze", {
         Title = "Freeze Position",
         Description = "Freezes player position and rotation",

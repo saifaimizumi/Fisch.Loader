@@ -868,7 +868,7 @@ do
         AntiAfk2()
     end)
 
-    local section = Tabs.Genaral:AddSection("Additional")
+    local section = Tabs.Genaral:AddSection("Sell fish🐟")
 
     local AutoSellF = Tabs.Genaral:AddToggle("AutoSellF", {Title = "Auto Sell Fish", Default = false })
     AutoSellF:OnChanged(function()

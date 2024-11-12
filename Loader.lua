@@ -869,7 +869,7 @@ do
     VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.Return, false, game)
     VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.Return, false, game)
     end
-    local autoShakeToggle = Tabs.Genaral:AddToggle("AutoShake", {
+    local autoShakeToggle = Tabs.Main:AddToggle("AutoShake", {
     Title = "Fast shake",
     Default = true,
     Callback = function(Value)

@@ -873,7 +873,7 @@ do
     Title = "Fast shake",
     Default = true,
     Callback = function(Value)
-        autoShake = Value
+        shake = Value
         
         if Value then
             PlayerGUI.ChildAdded:Connect(function(GUI)

@@ -704,7 +704,6 @@ end
     end)
 
     local section = Tabs.Main:AddSection("Fishing")
-
     local DropdownShake = Tabs.Main:AddDropdown("DropdownShake", {
         Title = "Select Auto Shake Mode:",
         Description = "Mouse - Make sure to hide UI and toggle chat off in order for Auto Shake to work!",

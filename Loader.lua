@@ -56,7 +56,8 @@ local Window = Fluent:CreateWindow({
 
 -- Creating tabs
 local Tabs = {
-    Main = Window:AddTab({ Title = "Main", Icon = "home" }),
+    Home = Window:AddTab({ Title = "Home", Icon = "home" }),
+    Main = Window:AddTab({ Title = "Main", Icon = "code" }),
     Teleports = Window:AddTab({ Title = "Teleports", Icon = "compass" }),
     Misc = Window:AddTab({ Title = "Misc", Icon = "file-text" }),
     Fun = Window:AddTab({ Title = "Fun", Icon = "coffee" }),
@@ -64,7 +65,6 @@ local Tabs = {
     Premium = Window:AddTab({ Title = "Premium", Icon = "diamond" }),
     Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 }
-
 local Options = Fluent.Options
 
 local teleportSpots = {
@@ -238,7 +238,7 @@ function AutoFish5()
             end
         end)
     end
-end
+end        
 function ZoneCasting()
     if not ProtectPremium then
         return
@@ -703,6 +703,82 @@ end
         end
     end)
 
+do
+    local section = Tabs.Home:AddSection("Change Log:")
+    Tabs.Home:AddParagraph({
+        Title = "Information",
+        Content = "[🟩] - Added\n[🟧] - Changed\n[🟥] - Removed\n[⭐] - Premium Feature"
+    })
+
+    Tabs.Home:AddParagraph({
+        Title = "v1.7 - Reborn!",
+        Content = "[🟩] - Added teleport to some locations\n[🟩] - Loot all treasure\n[🟩] - loot treasure\n[🟥] - Teleport area\n[🟧] - Updated auto fish"
+    })
+
+    Tabs.Home:AddParagraph({
+        Title = "v1.6 - Fixes!",
+        Content = "[⭐] - Zone Casting Fix\n[⭐] - Auto Shake No Delay fix speed\n[🟩] - Teleport to Midas Rod\n[🟧] - Better sell buttons\n[🟧] - Auto Shake Dropdown\n[🟧] - Auto Cast & Reel & Shake in one toggle now"
+    })
+    Tabs.Home:AddParagraph({
+        Title = "v1.5 - Meow!",
+        Content = "[⭐] - Zone Casting\n[🟩] - Player Move Speed\n[🟩] - Player Jump Power\n[🟩] - Fly\n[🟩] - Roblox Radio\n[🟩] - Auto Appraiser\n[🟧] - Better Freeze\n[🟧] - Auto Shake (mouse)\n[🟧] - Auto Cast & Reel (one button)"
+    })
+    Tabs.Home:AddParagraph({
+        Title = "v1.4 - Buttons!",
+        Content = "[🟩] - 4 buttons in teleport\n[🟩] - Button to enable fps cap"
+    })
+    Tabs.Home:AddParagraph({
+        Title = "v1.3 - FpS",
+        Content = "[🟩] - Fps Cap"
+    })
+    Tabs.Home:AddParagraph({
+        Title = "v1.2 - Fishing",
+        Content = "[⭐] - No Shake Delay all\n[🟩] - AntiAFK added\n[🟩] - Auto Bait\n[🟩] - Remove all flags (fps)\n[🟩] - Fish Area teleport\n[🟩] - Auto Cast more safest\n[🟧] - Better Freeze\n[🟧] - Shake Delay minimum 0.2\n[🟧] - Auto Shake v1 and v2 better"
+    })
+    Tabs.Home:AddParagraph({
+        Title = "v1.1 - Fixes",
+        Content = "[🟧] Phantom Clicks - fixed\n[🟧] Better Freeze\n[⭐] - No Shake Delay (Mouse Clicks)"
+    })
+    Tabs.Home:AddParagraph({
+        Title = "v1 - Meow",
+        Content = "[🟧] Auto Shake Speed 0.3-1\n[🟧] Webhook Loger fixed\n[🟩] Black Screen\n[🟩] White Screen\n[🟩] FpS Booster\n[⭐] No Shake Delay (Premium)"
+    })
+    Tabs.Home:AddParagraph({
+        Title = "v0.9 - Fixes",
+        Content = "[🟩] ChangeLog information\n[🟧] Auto Freeze fix\n[🟥] Auto Cast Chance (because bugs ~solara)\n[🟩] Auto Cast - Random Chance from 90 to 99"
+    })
+    Tabs.Home:AddParagraph({
+        Title = "v0.8 - Webhook & Fishing",
+        Content = "[🟩] Webhook fixed bugs\n[🟧] Fixed Auto Freeze\n[🟩] Auto Cast chance\n[🟩] Auto sell fish"
+    })
+    Tabs.Home:AddParagraph({
+        Title = "v0.7 - Webhook",
+        Content = "[🟩] Webhook URL\n[🟩] Webhook Delay messages\n[🟩] Webhook On/Off"
+    })
+    Tabs.Home:AddParagraph({
+        Title = "v0.6 - Items",
+        Content = "[🟧] Teleport Items - +2 rods"
+    })
+    Tabs.Home:AddParagraph({
+        Title = "v0.5 - Fixes",
+        Content = "[🟧] Bigger UI\n[🟩] Auto Shake V2\n[🟧] Auto Shake more information\n[🟩] Teleports Place - New Location\n[🟩] Teleport NPCs - Updated\n[🟩] Ui Toggle (Mobile)"
+    })
+    Tabs.Home:AddParagraph({
+        Title = "v0.4 - Fixes",
+        Content = "[🟩] Freeze Character\n[🟩] Auto Cast Fix Bugs (v0.3)"
+    })
+    Tabs.Home:AddParagraph({
+        Title = "v0.3 - Teleports",
+        Content = "[🟧] Fixed NPCs teleport\n[🟧] Fixed Item Grabber (🎃)\n[🟩] Teleport Fish Radar\n[🟩] Teleport Basic Diving Gear"
+    })
+    Tabs.Home:AddParagraph({
+        Title = "v0.2 - Bug Fixes",
+        Content = "[🟧] Auto Shake\n[🟩] Auto Shake Delay\n[🟧] Auto Reel\n[🟧] Auto Cast\n[🟩] Teleport Place\n[🟩] Teleport NPCs\n[🟩] Teleport Items\n[🟩] Item Graber (🎃)\n[🟩] Noclip\n[🟩] Infinity Oxygen"
+    })
+    Tabs.Home:AddParagraph({
+        Title = "v0.1 - Release",
+        Content = "[🟩] Auto Fish\n[🟩] Auto Sell All"
+    })
     local section = Tabs.Main:AddSection("Fishing")
     local DropdownShake = Tabs.Main:AddDropdown("DropdownShake", {
         Title = "Select Auto Shake Mode:",

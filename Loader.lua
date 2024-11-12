@@ -812,7 +812,7 @@ do
         print("Auto Shake Mode:", Value)
     end)   
     
-    local autoReelCastShakeT = Tabs.Genaral:AddToggle("autoReelCastShakeT", {Title = "Auto Fish", Default = false })
+    local autoReelCastShakeT = Tabs.Genaral:AddToggle("autoReelCastShakeT", {Title = "Auto Farming", Default = false })
     autoReelCastShakeT:OnChanged(function(Value)
         autoReel = Value
         AutoCast = Value

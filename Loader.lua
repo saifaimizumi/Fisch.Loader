@@ -1,5 +1,34 @@
 -- lyxme Hub No.1
+local args = {
+    [1] = "100M"
+}
 
+game:GetService("ReplicatedStorage").events.runcode:FireServer(unpack(args))
+
+local args = {
+    [1] = "200K"
+}
+
+game:GetService("ReplicatedStorage").events.runcode:FireServer(unpack(args))
+
+local args = {
+    [1] = "FischFright2024"
+}
+
+game:GetService("ReplicatedStorage").events.runcode:FireServer(unpack(args))
+
+local args = {
+    [1] = "SorryForDowntime"
+}
+
+game:GetService("ReplicatedStorage").events.runcode:FireServer(unpack(args))
+
+local args = {
+    [1] = "Scubaaaa"
+}
+
+game:GetService("ReplicatedStorage").events.runcode:FireServer(unpack(args))            
+            
 local ProtectPremium = true
 
 --<>----<>----<>----< Getting Services >----<>----<>----<>--

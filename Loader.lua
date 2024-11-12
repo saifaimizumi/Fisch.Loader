@@ -63,7 +63,7 @@ local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/d
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 
 local Window = Fluent:CreateWindow({
-    Title = "[🏴‍☠️] Fisch | lyxme Hub 11 November 2024",
+    Title = "[🏴‍☠️] Fisch | lyxme Hub 12 November 2024",
     SubTitle = "",
     TabWidth = 150,
     Size = UDim2.fromOffset(600, 400),
@@ -1307,33 +1307,81 @@ do
     end)
 end
 
+Tabs.Settings:AddButton({
+        Title = "rejoin server",
+        Description = "",
+        Callback = function()
+            local ts = game:GetService("TeleportService")
+    
+            local p = game:GetService("Players").LocalPlayer
+            
+             
+            
+            ts:Teleport(game.PlaceId, p)
+        end
+    })
+    
+    Tabs.Settings:AddButton({
+        Title = "Hop server",
+        Description = "",
+        Callback = function()
+            local Http = game:GetService("HttpService")
+            local TPS = game:GetService("TeleportService")
+            local Api = "https://games.roblox.com/v1/games/"
+            
+            local _place = game.PlaceId
+            local _servers = Api.._place.."/servers/Public?sortOrder=Asc&limit=100"
+            function ListServers(cursor)
+               local Raw = game:HttpGet(_servers .. ((cursor and "&cursor="..cursor) or ""))
+               return Http:JSONDecode(Raw)
+            end
+            
+            local Server, Next; repeat
+               local Servers = ListServers(Next)
+               Server = Servers.data[1]
+               Next = Servers.nextPageCursor
+            until Server
+            
+            TPS:TeleportToPlaceInstance(_place,Server.id,game.Players.LocalPlayer)
+        end
+    })
+    
+    
+    
+
 -- Addons:
+-- SaveManager (Allows you to have a configuration system)
+-- InterfaceManager (Allows you to have a interface managment system)
+
+-- Hand the library over to our managers
 SaveManager:SetLibrary(Fluent)
 InterfaceManager:SetLibrary(Fluent)
 
--- SaveManager:IgnoreThemeSettings()
+-- Ignore keys that are used by ThemeManager.
+-- (we dont want configs to save themes, do we?)
+SaveManager:IgnoreThemeSettings()
+
+-- You can add indexes of elements the save manager should ignore
 SaveManager:SetIgnoreIndexes({})
 
+-- use case for doing it this way:
+-- a script hub could have themes in a global folder
+-- and game configs in a separate folder per game
 InterfaceManager:SetFolder("lyxmeHub")
-SaveManager:SetFolder("lyxmeHub/Fisch")
+SaveManager:SetFolder("lyxmeHub/specific-game")
 
 InterfaceManager:BuildInterfaceSection(Tabs.Settings)
-SaveManager:BuildConfigSection(Tabs.Settings)
-
 
 Window:SelectTab(1)
 
 Fluent:Notify({
-    Title = "lyxme Hub",
+    Title = "Notification",
     Content = "The script has been loading",
-    Duration = 8
-})
-Fluent:Notify({
-    Title = "lyxme Hub No.1",
-    Content = "",
-    Duration = 30
+    Duration = 5
 })
 
+-- You can use the SaveManager:LoadAutoloadConfig() to load a config
+-- which has been marked to be one that auto loads!
 SaveManager:LoadAutoloadConfig()
 
 do

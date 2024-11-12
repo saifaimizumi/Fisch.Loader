@@ -194,6 +194,7 @@ local AutoSell = false
 local AntiAfk = false
 local AutoAppraiser = false
 local shake = true
+local autoShakeDelay1 false
 
 local Keybind = Enum.KeyCode.F
 
@@ -852,7 +853,7 @@ do
     if not button.Visible then return end
     
     GuiService.SelectedObject = button
-    task.wait(autoShakeDelay)
+    task.wait(autoShakeDelay1)
     
     VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.Return, false, game)
     VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.Return, false, game)
@@ -862,6 +863,7 @@ do
     Default = false,
     Callback = function(Value)
         shake = Value
+        autoShakeDelay1 = Value
         
         if Value then
             PlayerGUI.ChildAdded:Connect(function(GUI)

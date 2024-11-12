@@ -1,4 +1,4 @@
--- lyxme Hub No.1
+ๅ-- lyxme Hub No.1
 local args = {
     [1] = "100M"
 }
@@ -1430,10 +1430,3 @@ end
 end)
 
 --Select Rod
-function SelectRod(Rod)
-    if Rod == "Flimsy Rod" then
-        game.Players.LocalPlayer.Character.Humanoid:EquipTool(game:GetService("Players").LocalPlayer.Backpack:FindFirstChild(Rod))
-    elseif Rod == "Traning Rod" then
-        game.Players.LocalPlayer.Character.Humanoid:EquipTool(game:GetService("Players").LocalPlayer.Backpack:FindFirstChild(Rod))
-    end
-end

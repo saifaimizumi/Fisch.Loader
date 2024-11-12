@@ -870,7 +870,7 @@ do
 
     local section = Tabs.Genaral:AddSection("Additional")
 
-    local AutoSellF = Tabs.Main:AddToggle("AutoSellF", {Title = "Auto Sell Fish", Default = false })
+    local AutoSellF = Tabs.Genaral:AddToggle("AutoSellF", {Title = "Auto Sell Fish", Default = false })
     AutoSellF:OnChanged(function()
         AutoSell = AutoSellF.Value
         AutoSellz()

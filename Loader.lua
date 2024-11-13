@@ -164,7 +164,6 @@ local itemSpots = {
 -- Locals
 local LocalPlayer = Players.LocalPlayer
 local LocalCharacter = LocalPlayer.Character
-local Character = localplayer.Character
 local HumanoidRootPart = LocalCharacter:FindFirstChild("HumanoidRootPart")
 local ActiveFolder = Workspace:FindFirstChild("active")
 local PlayerGUI = LocalPlayer:FindFirstChildOfClass("PlayerGui")
@@ -1316,5 +1315,3 @@ end)
 
 UICorner.CornerRadius = UDim.new(0, 10)
 UICorner.Parent = ImageButton
-
---EquipRod 

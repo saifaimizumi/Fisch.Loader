@@ -75,6 +75,7 @@ local Window = Fluent:CreateWindow({
 -- Creating tabs
 local Tabs = {
     Genaral = Window:AddTab({ Title = "Genaral", Icon = "home" }),
+    Merchant = Window:AddTab({ Title = "Merchant", Icon = "shopping-cart" }),
     Teleports = Window:AddTab({ Title = "Teleports", Icon = "compass" }),
     Misc = Window:AddTab({ Title = "Misc", Icon = "file-text" }),
     Fun = Window:AddTab({ Title = "Fun", Icon = "coffee" }),
@@ -787,14 +788,14 @@ do
         AntiAfk2()
     end)
 
-    local section = Tabs.Genaral:AddSection("Sell Fish🐟")
+    local section = Tabs.Merchant:AddSection("Sell Fish🐟")
 
-    local AutoSellF = Tabs.Genaral:AddToggle("AutoSellF", {Title = "Auto Sell Fish", Default = false })
+    local AutoSellF = Tabs.Merchant:AddToggle("AutoSellF", {Title = "Auto Sell Fish", Default = false })
     AutoSellF:OnChanged(function()
         workspace.world.npcs:FindFirstChild("Marc Merchant").merchant.sellall:InvokeServer()
     end)
 
-    local SliderSell = Tabs.Genaral:AddSlider("SliderSell", {
+    local SliderSell = Tabs.Merchant:AddSlider("SliderSell", {
         Title = "Selling All fish every ? seconds",
         Description = "",
         Default = 60,
@@ -805,7 +806,7 @@ do
             AutoSellDelay = Value
         end
     })
-
+    local section = Tabs.Genaral:AddSection("Treasure Map🗺️")
     Tabs.Genaral:AddButton({
         Title = "Loot Treasure",
         Description = "Looting treasure",
@@ -822,14 +823,14 @@ do
         end
     })
 
-    Tabs.Genaral:AddButton({
+    Tabs.Merchant:AddButton({
         Title = "Sell one fish",
         Description = "Need to hold fish",
         Callback = function()
             SellFishAndReturnOne()
         end
     })
-    Tabs.Genaral:AddButton({
+    Tabs.Merchant:AddButton({
         Title = "Sell All fishs",
         Description = "Selling all fish anywhere!",
         Callback = function()
@@ -1008,30 +1009,7 @@ do
 
     local section = Tabs.Misc:AddSection("Fps Services")
 
-    local Slider512 = Tabs.Misc:AddSlider("Slider512", {
-        Title = "FPS Cap",
-        Default = 90,
-        Min = 1,
-        Max = 240,
-        Rounding = 1,
-        Callback = function(Value)
-            FpsCap = Value
-            print(Value)
-        end
-    })
-    Slider512:OnChanged(function(Value)
-        FpsCap = Value
-        print(Value)
-    end)
-    Slider512:SetValue(90)
-
-    Tabs.Misc:AddButton({
-        Title = "Button to enable fps cap value",
-        Description = "🐟",
-        Callback = function()
-            setfpscap(FpsCap)
-        end
-    })
+    
 
     local BlackGui = Instance.new("ScreenGui")
     BlackGui.Name = "BlackGui"

@@ -752,6 +752,7 @@ do
         end
         AutoFish = Value
         AutoFish5()
+        find_rod()
         if AutoCast == true and LocalCharacter:FindFirstChildOfClass("Tool") ~= nil then
             local Tool = LocalCharacter:FindFirstChildOfClass("Tool")
             if Tool:FindFirstChild("events"):WaitForChild("cast") ~= nil then
@@ -1315,3 +1316,18 @@ end)
 
 UICorner.CornerRadius = UDim.new(0, 10)
 UICorner.Parent = ImageButton
+
+--Equiprod
+function find_rod()
+    local character = localplayer.Character
+    if not character then return nil end
+
+    for _, tool in ipairs(character:GetChildren()) do
+        if tool:IsA("Tool") and (tool.Name:find("rod") or tool.Name:find("Rod")) then
+            return tool
+        end
+    end
+
+    return nil
+end
+

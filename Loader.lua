@@ -1111,8 +1111,8 @@ do
     })
 
     Tabs.Fun:AddButton({
-        Title = "Radio UI",
-        Description = "Chill😎",
+        Title = "Turn on the music",
+        Description = "",
         Callback = function()
             loadstring(game:HttpGet('https://pastebin.com/raw/zv94NGMc'))()
         end
@@ -1227,7 +1227,7 @@ do
 end
 
 Tabs.Settings:AddButton({
-    Title = "rejoin erver",
+    Title = "rejoin server",
     Description = "",
     Callback = function()
         local ts = game:GetService("TeleportService")

@@ -989,7 +989,7 @@ do
         Noclip = ToggleNoclip.Value
     end)
 
-    local ToggleAntiDrown = Tabs.Misc:AddToggle("ToggleAntiDrown", {Title = "Infinity Oxygen", Default = false })
+    local ToggleAntiDrown = Tabs.Misc:AddToggle("ToggleAntiDrown", {Title = "Disable Oxygen", Default = false })
     ToggleAntiDrown:OnChanged(function()
         AntiDrown = ToggleAntiDrown.Value
         if AntiDrown == true then

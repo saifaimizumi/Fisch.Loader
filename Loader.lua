@@ -855,6 +855,18 @@ do
             })
         end
     })
+    local section = Tabs.Merchant:AddSection("Appraiser⚖️")
+    Tabs.Merchant:AddButton({
+        Title = "Appraiser",
+        Description = "",
+        Callback = function()
+            workspace.world.npcs.Appraiser.appraiser.appraise:InvokeServer()
+        end
+    local ToggleAutoApprari = Tabs.Merchant:AddToggle("ToggleAutoApprari", {Title = "Auto Appraiser", Description = "Need to hold fish and be in / near moosewood", Default = false })
+    ToggleAutoApprari:OnChanged(function()
+        AutoAppraiser = ToggleAutoApprari.Value
+        Appraise()
+    end)
 
     local FishAreas = {
         Moosewood_Docks = CFrame.new(330, 133, 268),
@@ -933,12 +945,6 @@ do
                 print("1")
             end
         end
-    end)
-    local section = Tabs.Misc:AddSection("Appraiser")
-    local ToggleAutoApprari = Tabs.Misc:AddToggle("ToggleAutoApprari", {Title = "Auto Appraiser", Description = "Need to hold fish and be in / near moosewood", Default = false })
-    ToggleAutoApprari:OnChanged(function()
-        AutoAppraiser = ToggleAutoApprari.Value
-        Appraise()
     end)
 
     local section = Tabs.Misc:AddSection("Halloween🎃")

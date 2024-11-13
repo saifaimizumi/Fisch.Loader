@@ -791,8 +791,7 @@ do
 
     local AutoSellF = Tabs.Genaral:AddToggle("AutoSellF", {Title = "Auto Sell Fish", Default = false })
     AutoSellF:OnChanged(function()
-        AutoSell = AutoSellF.Value
-        AutoSellz()
+        workspace.world.npcs:FindFirstChild("Marc Merchant").merchant.sellall:InvokeServer()
     end)
 
     local SliderSell = Tabs.Genaral:AddSlider("SliderSell", {

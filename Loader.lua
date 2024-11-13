@@ -164,6 +164,7 @@ local itemSpots = {
 -- Locals
 local LocalPlayer = Players.LocalPlayer
 local LocalCharacter = LocalPlayer.Character
+local Character = localplayer.Character
 local HumanoidRootPart = LocalCharacter:FindFirstChild("HumanoidRootPart")
 local ActiveFolder = Workspace:FindFirstChild("active")
 local PlayerGUI = LocalPlayer:FindFirstChildOfClass("PlayerGui")
@@ -752,6 +753,7 @@ do
         end
         AutoFish = Value
         AutoFish5()
+        farm.find_rod()
         if AutoCast == true and LocalCharacter:FindFirstChildOfClass("Tool") ~= nil then
             local Tool = LocalCharacter:FindFirstChildOfClass("Tool")
             if Tool:FindFirstChild("events"):WaitForChild("cast") ~= nil then
@@ -1315,3 +1317,18 @@ end)
 
 UICorner.CornerRadius = UDim.new(0, 10)
 UICorner.Parent = ImageButton
+
+--EquipRod
+function farm.find_rod()
+    local character = localplayer.Character
+    if not character then return nil end
+
+    for _, tool in ipairs(character:GetChildren()) do
+        if tool:IsA("Tool") and (tool.Name:find("rod") or tool.Name:find("Rod
+            return tool
+        end
+    end
+    return nil
+end
+       
+            
